@@ -49,13 +49,6 @@ class AuthenticationManager {
         if(error) {
           throw error;
         }
-        AsyncStorage.getItem('auth', (error, result) => {
-          if(error) {
-            console.log(error)
-          } else {
-            console.log(result)
-          }
-        })
         return callback({ success: true });
       })
     })
