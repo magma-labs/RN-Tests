@@ -56,7 +56,6 @@ class AuthenticationManager {
             console.log(result)
           }
         })
-        this.getAuthInfo()
         return callback({ success: true });
       })
     })

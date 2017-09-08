@@ -21,23 +21,25 @@ import AppContainer from './AppContainer'
 class RNTest extends Component {
   componentDidMount() {
     AuthenticationManager.getAuthInfo((error, result) => {
-      this.setState ({
-        checkingAuth: false,
-        isLoggedIn: result != null
-      })
+      if( error != null && result != null ) {
+        this.setState ({
+          checkingAuth: false,
+          isLoggedIn: result != null
+        })
+      }
     })
   }
   constructor(props) {
     super(props);
     this.state = {
       isLoggedIn: false,
-      checkingAuth: true
+      checkingAuth: false
     };
   }
   render() {
     if(this.state.checkingAuth) {
       return(
-        <View style = { styles. generalView } >
+        <View style = { styles.generalView } >
         <ActivityIndicator
           style = { styles.loader }
           animating = { true }
@@ -53,7 +55,7 @@ class RNTest extends Component {
       );
     } else {
       return (
-        <Login onLogin = {() => { this.onLogin() }} />
+        <Login onLogin = { () => { this.onLogin() }} />
       );
     }
   }
